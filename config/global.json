@@ -1,0 +1,21 @@
+{
+  "baseUrl": "https://your-app.example.com",
+
+  "auth": {
+    "url": "/api/v1/auth/token",
+    "usernameField": "email",
+    "passwordField": "password",
+    "tokenPath": "access_token",
+    "dataFile": "data/users.csv"
+  },
+
+  "apps": [
+    "user-service",
+    "product-service",
+    "order-service",
+    "inventory-service",
+    "payment-service",
+    "notification-service",
+    "reporting-service"
+  ]
+}

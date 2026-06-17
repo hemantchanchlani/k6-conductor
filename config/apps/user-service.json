@@ -1,0 +1,32 @@
+{
+  "endpoints": [
+    {
+      "id": "get_users",
+      "method": "GET",
+      "url": "/api/v1/users",
+      "dataFile": null,
+      "thinkTime": { "min": 1, "max": 3 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "get_user_by_id",
+      "method": "GET",
+      "url": "/api/v1/users/{userId}",
+      "dataFile": "data/user_ids.csv",
+      "thinkTime": { "min": 1, "max": 3 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "update_user",
+      "method": "PUT",
+      "url": "/api/v1/users/{userId}",
+      "body": { "name": "{name}", "email": "{email}" },
+      "dataFile": "data/user_ids.csv",
+      "thinkTime": { "min": 2, "max": 5 },
+      "weight": 20,
+      "checks": { "status": 200 }
+    }
+  ]
+}

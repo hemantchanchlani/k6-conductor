@@ -1,0 +1,32 @@
+{
+  "endpoints": [
+    {
+      "id": "list_orders",
+      "method": "GET",
+      "url": "/api/v1/orders",
+      "dataFile": null,
+      "thinkTime": { "min": 1, "max": 3 },
+      "weight": 30,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "get_order",
+      "method": "GET",
+      "url": "/api/v1/orders/{orderId}",
+      "dataFile": "data/order_ids.csv",
+      "thinkTime": { "min": 2, "max": 5 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "create_order",
+      "method": "POST",
+      "url": "/api/v1/orders",
+      "body": { "productId": "{productId}", "quantity": "{quantity}", "userId": "{userId}" },
+      "dataFile": "data/order_payload.csv",
+      "thinkTime": { "min": 3, "max": 6 },
+      "weight": 30,
+      "checks": { "status": 201 }
+    }
+  ]
+}

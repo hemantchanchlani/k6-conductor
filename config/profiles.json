@@ -1,0 +1,35 @@
+{
+  "dryrun": {
+    "stages": [
+      { "duration": "1m", "target": 1 }
+    ]
+  },
+  "smoke": {
+    "stages": [
+      { "duration": "2m", "target": 5 }
+    ]
+  },
+  "load": {
+    "stages": [
+      { "duration": "2m", "target": 50  },
+      { "duration": "5m", "target": 200 },
+      { "duration": "5m", "target": 200 },
+      { "duration": "3m", "target": 0   }
+    ]
+  },
+  "stress": {
+    "stages": [
+      { "duration": "2m", "target": 200  },
+      { "duration": "5m", "target": 500  },
+      { "duration": "5m", "target": 1000 },
+      { "duration": "3m", "target": 0    }
+    ]
+  },
+  "soak": {
+    "stages": [
+      { "duration": "5m",   "target": 200 },
+      { "duration": "110m", "target": 200 },
+      { "duration": "5m",   "target": 0   }
+    ]
+  }
+}

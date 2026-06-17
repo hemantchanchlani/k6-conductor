@@ -1,0 +1,32 @@
+{
+  "endpoints": [
+    {
+      "id": "list_products",
+      "method": "GET",
+      "url": "/api/v1/products",
+      "dataFile": null,
+      "thinkTime": { "min": 1, "max": 3 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "get_product",
+      "method": "GET",
+      "url": "/api/v1/products/{productId}",
+      "dataFile": "data/product_ids.csv",
+      "thinkTime": { "min": 2, "max": 5 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "create_product",
+      "method": "POST",
+      "url": "/api/v1/products",
+      "body": { "name": "{name}", "category": "{category}", "price": "{price}" },
+      "dataFile": "data/products.csv",
+      "thinkTime": { "min": 2, "max": 4 },
+      "weight": 20,
+      "checks": { "status": 201 }
+    }
+  ]
+}

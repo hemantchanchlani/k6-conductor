@@ -1,0 +1,32 @@
+{
+  "endpoints": [
+    {
+      "id": "list_reports",
+      "method": "GET",
+      "url": "/api/v1/reports",
+      "dataFile": null,
+      "thinkTime": { "min": 2, "max": 5 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "get_report",
+      "method": "GET",
+      "url": "/api/v1/reports/{reportId}",
+      "dataFile": "data/report_ids.csv",
+      "thinkTime": { "min": 3, "max": 8 },
+      "weight": 40,
+      "checks": { "status": 200 }
+    },
+    {
+      "id": "generate_report",
+      "method": "POST",
+      "url": "/api/v1/reports",
+      "body": { "type": "{type}", "fromDate": "{fromDate}", "toDate": "{toDate}" },
+      "dataFile": "data/report_payload.csv",
+      "thinkTime": { "min": 3, "max": 6 },
+      "weight": 20,
+      "checks": { "status": 201 }
+    }
+  ]
+}
