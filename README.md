@@ -1,5 +1,10 @@
 # k6-conductor
 
+[![k6](https://img.shields.io/badge/k6-v0.46+-blue?logo=k6)](https://k6.io)
+[![License](https://img.shields.io/github/license/hemantchanchlani/k6-conductor)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/hemantchanchlani/k6-conductor?style=social)](https://github.com/hemantchanchlani/k6-conductor/stargazers)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+
 > Configuration-driven load testing framework built on [Grafana k6](https://k6.io).  
 > Add a new endpoint by editing JSON — no code required.
 
@@ -17,8 +22,8 @@
 
 ## Project structure
 
-```
-framework/
+```text
+k6-conductor/
 ├── main.js                        # k6 entry point — do not edit
 ├── config/
 │   ├── global.json                # Base URL, auth config, app registry
@@ -115,16 +120,16 @@ ORD-003
 
 ```bash
 # All services, default load profile
-k6 run framework/main.js
+k6 run main.js
 
 # Single service
-k6 run -e APPS=order-service framework/main.js
+k6 run -e APPS=order-service main.js
 
 # Multiple services
-k6 run -e APPS=user-service,order-service framework/main.js
+k6 run -e APPS=user-service,order-service main.js
 
 # Override base URL
-k6 run -e BASE_URL=https://staging.example.com -e APPS=all framework/main.js
+k6 run -e BASE_URL=https://staging.example.com -e APPS=all main.js
 ```
 
 ---
@@ -132,11 +137,11 @@ k6 run -e BASE_URL=https://staging.example.com -e APPS=all framework/main.js
 ## Endpoint config reference
 
 | Field | Required | Description |
-|---|---|---|
+| --- | --- | --- |
 | `id` | Yes | Unique identifier, used in k6 tags and logs |
 | `method` | Yes | `GET` `POST` `PUT` `PATCH` `DELETE` |
 | `url` | Yes | Path with `{placeholder}` tokens for path variables |
-| `dataFile` | No | CSV file path (relative to `framework/`). `null` if no data needed |
+| `dataFile` | No | CSV file path (relative to repo root). `null` if no data needed |
 | `body` | No | Request body object. Values can contain `{placeholder}` tokens |
 | `thinkTime` | Yes | `{ "min": 1, "max": 3 }` — seconds to sleep after the call |
 | `weight` | Yes | Relative traffic share. Does not need to sum to 100 |
@@ -149,7 +154,7 @@ k6 run -e BASE_URL=https://staging.example.com -e APPS=all framework/main.js
 Profiles are defined in `config/profiles.json`. Select one at runtime with `TEST_TYPE`.
 
 | Profile | Purpose |
-|---|---|
+| --- | --- |
 | `dryrun` | 1 VU for 1 min — verify nothing is broken |
 | `smoke` | 5 VUs for 2 min — quick sanity check |
 | `load` | Ramp to 200 VUs — normal production load |
@@ -157,9 +162,9 @@ Profiles are defined in `config/profiles.json`. Select one at runtime with `TEST
 | `soak` | 200 VUs for 2 hours — detect slow degradation |
 
 ```bash
-k6 run -e TEST_TYPE=smoke  framework/main.js
-k6 run -e TEST_TYPE=stress framework/main.js
-k6 run -e TEST_TYPE=soak   framework/main.js
+k6 run -e TEST_TYPE=smoke  main.js
+k6 run -e TEST_TYPE=stress main.js
+k6 run -e TEST_TYPE=soak   main.js
 ```
 
 Add a new profile by adding a JSON entry to `config/profiles.json` — no code changes needed.
@@ -169,7 +174,7 @@ Add a new profile by adding a JSON entry to `config/profiles.json` — no code c
 ## ENV variable reference
 
 | Variable | Default | Description |
-|---|---|---|
+| --- | --- | --- |
 | `BASE_URL` | value in `global.json` | Override the target base URL |
 | `TEST_TYPE` | `load` | Load profile to use |
 | `APPS` | `all` | Comma-separated service names, or `all` |
